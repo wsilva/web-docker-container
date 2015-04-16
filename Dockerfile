@@ -1,4 +1,4 @@
-FROM debian
+FROM debian:wheezy
 
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
 

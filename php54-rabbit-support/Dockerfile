@@ -47,10 +47,10 @@ RUN echo "xdebug.remote_enable=1" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.remote_port=9001" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.remote_autostart=1" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.remote_connect_back=1" >> /etc/php5/mods-available/xdebug.ini \
-    && echo "xdebug.var_display_max_depth = -1 " >> /etc/php5/mods-available/xdebug.ini \
+    && echo "\n\nxdebug.var_display_max_depth = -1 " >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.var_display_max_children = -1" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.var_display_max_data = -1 " >> /etc/php5/mods-available/xdebug.ini \
-RUN echo "\n\nxdebug.remote_host="`/sbin/ip route|awk '/default/ { print $3 }'` >> /etc/php5/mods-available/xdebug.ini
+    && echo "\n\nxdebug.remote_host="`/sbin/ip route|awk '/default/ { print $3 }'` >> /etc/php5/mods-available/xdebug.ini
 
 WORKDIR /
 RUN git clone https://github.com/alanxz/rabbitmq-c && git clone https://github.com/phadej/igbinary && git clone git://github.com/goatherd/php-snappy.git

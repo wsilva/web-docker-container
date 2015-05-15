@@ -16,7 +16,7 @@ RUN echo "deb http://packages.dotdeb.org wheezy-php56-zts all" > /etc/apt/source
 
 
 RUN apt-get update && apt-get install -y vim git whiptail mlocate net-tools curl procps \
-    re2c php5-cli php5-fpm mysql-client php5-intl php5-recode \
+    re2c php5-cli php5-fpm php5-mysql mysql-client php5-intl php5-recode \
     php5-snmp php5-mcrypt php5-memcache php5-memcached php5-imagick php5-curl php5-xsl php5-snmp \
     php5-dev php5-tidy php5-xmlrpc php5-gd php5-pspell php-pear nginx pkg-config newrelic-php5
 

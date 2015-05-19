@@ -43,7 +43,8 @@ RUN sed -i "s/;date.timezone =/date.timezone = America\/Sao_Paulo/" /etc/php5/cl
 
 # COPY xdebug.ini /etc/php5/mods-available/xdebug.ini
 RUN pecl install xdebug
-RUN echo "xdebug.remote_enable=1" >> /etc/php5/mods-available/xdebug.ini \
+RUN echo "zend_extension=/usr/lib/php5/20100525/xdebug.so" >> /etc/php5/mods-available/xdebug.ini \
+    && echo "\n\nxdebug.remote_enable=1" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.remote_handler=dbgp" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.remote_mode=req" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.remote_port=9001" >> /etc/php5/mods-available/xdebug.ini \
@@ -52,7 +53,8 @@ RUN echo "xdebug.remote_enable=1" >> /etc/php5/mods-available/xdebug.ini \
     && echo "\n\nxdebug.var_display_max_depth = -1 " >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.var_display_max_children = -1" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.var_display_max_data = -1 " >> /etc/php5/mods-available/xdebug.ini \
-    && echo "\n\nxdebug.remote_host="`/sbin/ip route|awk '/default/ { print $3 }'` >> /etc/php5/mods-available/xdebug.ini
+    && echo "\n\nxdebug.remote_host="`/sbin/ip route|awk '/default/ { print $3 }'` >> /etc/php5/mods-available/xdebug.ini \
+    && php5enmod xdebug
 
 WORKDIR /
 RUN git clone https://github.com/alanxz/rabbitmq-c && git clone https://github.com/phadej/igbinary && git clone git://github.com/goatherd/php-snappy.git

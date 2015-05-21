@@ -15,7 +15,7 @@ RUN echo "deb http://packages.dotdeb.org wheezy-php56-zts all" > /etc/apt/source
     && wget --no-check-certificate -O - https://download.newrelic.com/548C16BF.gpg | apt-key add -
 
 
-RUN apt-get update && apt-get install -y vim git whiptail mlocate net-tools curl procps \
+RUN apt-get update && apt-get install -y vim make git whiptail mlocate net-tools curl procps \
     re2c php5-cli php5-fpm php5-mysql mysql-client php5-intl php5-recode \
     php5-snmp php5-mcrypt php5-memcache php5-memcached php5-imagick php5-curl php5-xsl php5-snmp \
     php5-dev php5-tidy php5-xmlrpc php5-gd php5-pspell php-pear nginx pkg-config newrelic-php5
@@ -41,8 +41,8 @@ RUN sed -i "s/;date.timezone =/date.timezone = America\/Sao_Paulo/" /etc/php5/cl
     && mv composer.phar /usr/bin/composer
 
 # COPY xdebug.ini /etc/php5/mods-available/xdebug.ini
-RUN pecl install xdebug
-RUN echo "zend_extension=/usr/lib/php5/20100525/xdebug.so" >> /etc/php5/mods-available/xdebug.ini \
+RUN pecl install xdebug-2.3.2
+RUN echo "zend_extension=/usr/lib/php5/20131226-zts/xdebug.so" > /etc/php5/mods-available/xdebug.ini \
     && echo "\n\nxdebug.remote_enable=1" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.remote_handler=dbgp" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.remote_mode=req" >> /etc/php5/mods-available/xdebug.ini \

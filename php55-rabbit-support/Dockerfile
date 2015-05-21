@@ -42,8 +42,8 @@ RUN sed -i "s/;date.timezone =/date.timezone = America\/Sao_Paulo/" /etc/php5/cl
     && mv composer.phar /usr/bin/composer
 
 # COPY xdebug.ini /etc/php5/mods-available/xdebug.ini
-RUN pecl install xdebug
-RUN echo "zend_extension=/usr/lib/php5/20100525/xdebug.so" >> /etc/php5/mods-available/xdebug.ini \
+RUN pecl install xdebug-2.3.2
+RUN echo "zend_extension=/usr/lib/php5/20121212/xdebug.so" > /etc/php5/mods-available/xdebug.ini \
     && echo "\n\nxdebug.remote_enable=1" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.remote_handler=dbgp" >> /etc/php5/mods-available/xdebug.ini \
     && echo "xdebug.remote_mode=req" >> /etc/php5/mods-available/xdebug.ini \
